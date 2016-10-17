@@ -79,5 +79,29 @@ img {
     font-size: 1em;
 }
 
+.tituloList {
+	width: 290px;
+    height: 30px;
+    padding: 5px;
+    cursor: pointer;
+	background-color: #E2E4E6;
+	border-style: none;
+	border-radius: 4px;
+	font-weight: bold;
+}
 
+.aTarjeta {
+	width: 300px;
+	height: 36px;
+	color: #8C8C8C;
+	cursor: pointer;
+	text-align: left;
+	background-color: #E2E4E6;
+	border-style: none;
+	border-radius: 4px;
+}
+
+.aTarjeta:hover {
+	text-decoration: underline;
+}
 
