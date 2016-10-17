@@ -1,0 +1,83 @@
+body {
+	background-color: #1B9FEA;
+}
+
+header {
+	background-color: #184870;
+	width: 100%;
+	height: 60px;
+}
+
+.contentImg {
+	margin-left: 45%;
+}
+
+img {
+	height: 40px;
+    margin-top: 6px;
+    width: 100px;
+}
+
+#subContenedorTrello {
+	margin-top: 40px;
+	margin-left: 3%;
+	width: 300px;
+}
+
+.ocultar {
+	display: none;
+}
+
+.aLista {
+	width: 260px;
+	height: 40px;
+	text-align: center;
+	font-size: 1em;
+	background-color: #006BA9;
+	border-radius: 4px;
+	border-style: none;
+	color: #CCE1ED;
+	cursor: pointer;
+}
+
+.aLista:hover {
+	background-color: #144A6A;
+}
+
+.form {
+	height: 75px;
+	border-radius: 4px;
+	display: none;
+}
+
+#formulario {
+	background-color: #E2E4E6;
+	border-radius: 4px;
+	padding: 3px;
+}
+
+#inputLista {
+	 width: 290px;
+    padding: 1px;
+    height: 30px;
+    cursor: text;
+    text-align: center;
+    border-color: #AAAAAA;
+    border-style: double;
+    background-color: #D7D9DB;
+}
+
+.btn {
+	width: 100px;
+    height: 35px;
+    border-radius: 5px;
+    margin-top: 4px;
+    cursor: pointer;
+    color: white;
+    background-color: #5DB449;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+
+
