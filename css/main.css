@@ -22,6 +22,7 @@ img {
 	margin-top: 40px;
 	margin-left: 3%;
 	width: 300px;
+	display: inline-block;
 }
 
 .ocultar {
@@ -105,3 +106,6 @@ img {
 	text-decoration: underline;
 }
 
+.newSubContenedor {
+	display: inline-block;
+}

@@ -11,6 +11,7 @@ window.addEventListener("load", function (){
 	guardarLista.addEventListener("click", function(e){
 		e.preventDefault();
 		mostrarNameLista(inputLista, this);
+		agregarContenedorHijo();
 		formulario.remove();
 	});
 
@@ -37,7 +38,16 @@ window.addEventListener("load", function (){
 		posicionNameLista.insertBefore(contentNameLista, posicionNameLista.childNodes[0]);
 		inputLista.value= "";
 	}
-	
 
+	function agregarContenedorHijo(){
+		var newSubContenedor = document.createElement("div");
+		contenedorTrello.appendChild(newSubContenedor);
+		newSubContenedor.classList.add("newSubContenedor");
+
+		newSubContenedor.insertBefore(anidarLista, newSubContenedor.childNodes[0]);
+		newSubContenedor.insertBefore(formulario, newSubContenedor.childNodes[1]);
+
+		anidarLista.classList.remove("ocultar");
+	}	
 
 });
