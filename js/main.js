@@ -1,3 +1,4 @@
+	
 window.addEventListener("load", function (){
 
 	var anidarLista = document.getElementById("anidarLista");
@@ -11,7 +12,7 @@ window.addEventListener("load", function (){
 
 	guardarLista.addEventListener("click", function(e){
 		e.preventDefault();
-		mostrarNameLista();
+		mostrarNameLista(this);
 		agregarContenedorHijo();
 	});
 
@@ -23,23 +24,25 @@ window.addEventListener("load", function (){
 		inputLista.focus();
 	}
 
-	function mostrarNameLista(){
+
+	function mostrarNameLista(boton){
 		var contentNameLista = document.createElement("div");
 		var anidarTarjeta = document.createElement("button");
-
+		var contenedorPadre = boton.parentElement.parentElement;
+		
 		contentNameLista.classList.add("tituloList");
 		anidarTarjeta.classList.add("aTarjeta");
 
 		contentNameLista.innerHTML = inputLista.value;
 		anidarTarjeta.textContent = "Añadir una tarjeta...";
 
-		subContenedor.insertBefore(anidarTarjeta, subContenedor.childNodes[0]);
-		subContenedor.insertBefore(contentNameLista, subContenedor.childNodes[0]);
+		contenedorPadre.insertBefore(anidarTarjeta, contenedorPadre.childNodes[0]);
+		contenedorPadre.insertBefore(contentNameLista, contenedorPadre.childNodes[0]);
 		inputLista.value = "";
 
 		anidarTarjeta.addEventListener("click", function(e){
 				e.preventDefault();
-				agregarTarjeta();
+				agregarTarjeta(this.parentNode);
 				anidarTarjeta.remove();
 		});
 	}
@@ -56,9 +59,9 @@ window.addEventListener("load", function (){
 		formulario.classList.add("ocultar");
 	}
 
-	function agregarTarjeta(posicionNameLista){
+	function agregarTarjeta(contenedorPadre){
 		var formTarjeta = document.createElement("form");
-		subContenedor.appendChild(formTarjeta);
+		contenedorPadre.appendChild(formTarjeta);
 		formTarjeta.classList.add("formTarjeta");
 
 		var textareaForm = document.createElement("textarea");
@@ -72,7 +75,6 @@ window.addEventListener("load", function (){
 		btnTarjeta.classList.add("botonFormTar");
 		btnTarjeta.innerText = "Añadir";
 	}
-
-		
 		
 });
+
