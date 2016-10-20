@@ -4,7 +4,7 @@ body {
 
 header {
 	background-color: #184870;
-	width: 100%;
+	position: fixed;
 	height: 60px;
 }
 
@@ -19,10 +19,15 @@ img {
 }
 
 #subContenedorTrello {
-	margin-top: 3%;
+	margin-top: 8%;
 	margin-left: 2%;
 	width: 300px;
 	display: inline-block;
+	white-space: normal;
+}
+
+.scrollH {
+	white-space: nowrap;
 }
 
 .ocultar {
@@ -113,10 +118,11 @@ img {
 
 .newSubContenedor {
 	margin-left: 2%;
-	margin-top: 3%;
+	margin-top: 8%;
 	width: 300px;
 	display: inline-block;
 	vertical-align: top;
+	white-space: normal;
 }
 
 .formTarjeta{
