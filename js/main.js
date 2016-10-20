@@ -1,80 +1,95 @@
-	
 window.addEventListener("load", function (){
 
-	var anidarLista = document.getElementById("anidarLista");
-	var formulario = document.getElementById("formulario");
-	var inputLista = document.getElementById("inputLista");
-	var guardarLista = document.getElementById("btnGuardarLista");
-	var subContenedor = document.getElementById("subContenedorTrello");
+    var anidarLista = document.getElementById("anidarLista");
+    var formulario = document.getElementById("formulario");
+    var inputLista = document.getElementById("inputLista");
+    var guardarLista = document.getElementById("btnGuardarLista");
+    var subContenedor = document.getElementById("subContenedorTrello");
 
+    anidarLista.addEventListener("click", mostrarForm);
 
-	anidarLista.addEventListener("click", mostrarForm);
+    guardarLista.addEventListener("click", function(e){
+        e.preventDefault();
+        mostrarNameLista();
+        agregarContenedorHijo();
+    });
 
-	guardarLista.addEventListener("click", function(e){
-		e.preventDefault();
-		mostrarNameLista(this);
-		agregarContenedorHijo();
-	});
+    function mostrarForm(e){
+        e.preventDefault();
+        anidarLista.classList.add("ocultar");
+        formulario.classList.remove("form");
+        formulario.classList.remove("ocultar");
+        inputLista.focus();
+    }
 
-	function mostrarForm(e){
-		e.preventDefault();
-		anidarLista.classList.add("ocultar");
-		formulario.classList.remove("form");
-		formulario.classList.remove("ocultar");
-		inputLista.focus();
-	}
+    function mostrarNameLista(boton){
+        var contentNameLista = document.createElement("div");
+        var anidarTarjeta = document.createElement("button");
 
+        contentNameLista.classList.add("tituloList");
+        anidarTarjeta.classList.add("aTarjeta");
 
-	function mostrarNameLista(boton){
-		var contentNameLista = document.createElement("div");
-		var anidarTarjeta = document.createElement("button");
-		var contenedorPadre = boton.parentElement.parentElement;
-		
-		contentNameLista.classList.add("tituloList");
-		anidarTarjeta.classList.add("aTarjeta");
+        contentNameLista.innerHTML = inputLista.value;
+        anidarTarjeta.textContent = "Añadir una tarjeta...";
 
-		contentNameLista.innerHTML = inputLista.value;
-		anidarTarjeta.textContent = "Añadir una tarjeta...";
+        anidarLista.parentElement.appendChild(anidarTarjeta);
+        anidarLista.parentElement.insertBefore(contentNameLista, anidarLista.parentElement.childNodes[0]);
+        inputLista.value = "";
 
-		contenedorPadre.insertBefore(anidarTarjeta, contenedorPadre.childNodes[0]);
-		contenedorPadre.insertBefore(contentNameLista, contenedorPadre.childNodes[0]);
-		inputLista.value = "";
+        anidarTarjeta.addEventListener("click", function(e){
+                e.preventDefault();
+                anidarTarjeta.classList.add("ocultar");
+                desplegarTarjeta(contentNameLista, anidarTarjeta);
+        });
+    }
 
-		anidarTarjeta.addEventListener("click", function(e){
-				e.preventDefault();
-				agregarTarjeta(this.parentNode);
-				anidarTarjeta.remove();
-		});
-	}
+    function agregarContenedorHijo(){
+        var newSubContenedor = document.createElement("div");
+        contenedorTrello.appendChild(newSubContenedor);
+        newSubContenedor.classList.add("newSubContenedor");
 
-	function agregarContenedorHijo(){
-		var newSubContenedor = document.createElement("div");
-		contenedorTrello.appendChild(newSubContenedor);
-		newSubContenedor.classList.add("newSubContenedor");
+        newSubContenedor.appendChild(anidarLista);
+        newSubContenedor.appendChild(formulario);
 
-		newSubContenedor.insertBefore(anidarLista, newSubContenedor.childNodes[0]);
-		newSubContenedor.insertBefore(formulario, newSubContenedor.childNodes[1]);
+        anidarLista.classList.remove("ocultar");
+        formulario.classList.add("ocultar");
+    }
 
-		anidarLista.classList.remove("ocultar");
-		formulario.classList.add("ocultar");
-	}
+    function desplegarTarjeta(contentNameLista, anidarTarjeta){
+        var formTarjeta = document.createElement("div");
+        formTarjeta.classList.add("formTarjeta");
 
-	function agregarTarjeta(contenedorPadre){
-		var formTarjeta = document.createElement("form");
-		contenedorPadre.appendChild(formTarjeta);
-		formTarjeta.classList.add("formTarjeta");
+        var textareaForm = document.createElement("textarea");
+        formTarjeta.insertBefore(textareaForm, formTarjeta.childNodes[0]);
+        textareaForm.classList.add("textareaF");
+        textareaForm.focus();
 
-		var textareaForm = document.createElement("textarea");
-		formTarjeta.appendChild(textareaForm);
-		textareaForm.classList.add("textareaF");
-		textareaForm.focus();
+        var btnTarjeta = document.createElement("button");
+        formTarjeta.insertBefore(btnTarjeta, formTarjeta.childNodes[1]);
+        btnTarjeta.classList.add("botonFormTar");
+        btnTarjeta.setAttribute("type", "button")
+        btnTarjeta.innerText = "Añadir";
+        contentNameLista.parentElement.appendChild(formTarjeta);
+        textareaForm.focus();
 
-		var btnTarjeta = document.createElement("button");
-		btnTarjeta.setAttribute("type", "button");
-		formTarjeta.appendChild(btnTarjeta);
-		btnTarjeta.classList.add("botonFormTar");
-		btnTarjeta.innerText = "Añadir";
-	}
-		
+        btnTarjeta.addEventListener("click", function(e){
+            e.preventDefault();
+            agregarTarjeta(textareaForm, contentNameLista);
+            anidarTarjeta.classList.remove("ocultar");
+            formTarjeta.classList.add("ocultar");
+        });
+    }
+
+    function agregarTarjeta(textareaForm, contentNameLista){
+        var nameTarjeta = document.createElement("div");
+        nameTarjeta.classList.add("nombreTar");
+        nameTarjeta.innerText = textareaForm.value;
+
+        var fondoTarjeta = document.createElement("div");
+        fondoTarjeta.classList.add("fondoT");
+
+        contentNameLista.parentElement.insertBefore(fondoTarjeta, contentNameLista.parentElement.childNodes[1]);
+        fondoTarjeta.insertBefore(nameTarjeta, fondoTarjeta.childNodes[0]);
+    }
+    
 });
-
